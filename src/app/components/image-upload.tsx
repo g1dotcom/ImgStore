@@ -1,3 +1,4 @@
+"use client";
 import { UploadButton } from "@/utils/uploadthing";
 import Image from "next/image";
 import { useState } from "react";
@@ -11,8 +12,7 @@ export default function ImageUploader() {
         endpoint="imageUploader"
         onClientUploadComplete={(res) => {
           // Do something with the response
-          console.log("Files: ", res);
-          alert("Upload Completed");
+          setImageUrl(res[0].url);
         }}
         onUploadError={(error: Error) => {
           // Do something with the error.
@@ -23,7 +23,7 @@ export default function ImageUploader() {
       {imageUrl.length ? (
         <div>
           {" "}
-          <Image src={imageUrl} alt="" />{" "}
+          <Image src={imageUrl} alt="" width={250} height={250} />{" "}
         </div>
       ) : null}
     </div>
